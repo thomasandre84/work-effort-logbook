@@ -12,6 +12,7 @@ public class Work {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(unique = true)
     private String name;
 
     @Enumerated(EnumType.STRING)

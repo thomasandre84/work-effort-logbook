@@ -76,7 +76,7 @@ class WorkResourceTest {
         given()
                 .when().delete(WorkResource.BASE_URL + "/" + workId)
                 .then()
-                .statusCode(200);
+                .statusCode(204);
     }
 
     @Test

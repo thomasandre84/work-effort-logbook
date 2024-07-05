@@ -42,11 +42,10 @@ public class WorkResource {
     }
 
     @DELETE
-    @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
     public Response deleteWork(@PathParam("id") UUID id) {
         workService.deleteWork(id);
-        return Response.ok("deleted " + id).build();
+        return Response.noContent().build();
     }
 
     @PUT

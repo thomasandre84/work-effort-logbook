@@ -1,0 +1,12 @@
+<div class="btn-group me-3">
+  <div class="btn-group" ngbDropdown container="body" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary">{{ work().name }}</button>
+    <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem (click)="onEditWork()">Rename</button>
+      <button ngbDropdownItem (click)="onDeleteWork()">Delete</button>
+    </div>
+  </div>
+</div>
+
+
