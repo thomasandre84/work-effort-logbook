@@ -1,0 +1,43 @@
+<mat-dialog-content>
+  This is a dialog to add work-times for work {{ data.work.name }}
+  <p>Create a Work-Time</p>
+  <mat-form-field>
+    <mat-label>Start date</mat-label>
+    <input matInput [matDatepicker]="startDatepicker" [(ngModel)]="workTime().startTime">
+    <mat-datepicker #startDatepicker/>
+    <mat-datepicker-toggle [for]="startDatepicker" matSuffix/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Start time</mat-label>
+    <input matInput
+           [matTimepicker]="startTimepicker"
+           [(ngModel)]="workTime().startTime"
+           [ngModelOptions]="{updateOn: 'blur'}">
+    <mat-timepicker #startTimepicker/>
+    <mat-timepicker-toggle [for]="startTimepicker" matSuffix/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>End date</mat-label>
+    <input matInput [matDatepicker]="endDatepicker" [(ngModel)]="workTime().endTime">
+    <mat-datepicker #endDatepicker/>
+    <mat-datepicker-toggle [for]="endDatepicker" matSuffix/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>End time</mat-label>
+    <input matInput
+           [matTimepicker]="endTimepicker"
+           [(ngModel)]="workTime().endTime"
+           [ngModelOptions]="{updateOn: 'blur'}">
+    <mat-timepicker #endTimepicker/>
+    <mat-timepicker-toggle [for]="endTimepicker" matSuffix/>
+  </mat-form-field>
+
+  <p>You selected: startTime {{ workTime().startTime }} endTime {{ workTime().endTime }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="workTime()" cdkFocusInitial>Update</button>
+  <button mat-button (click)="abort()">Cancel</button>
+</mat-dialog-actions>

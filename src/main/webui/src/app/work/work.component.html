@@ -1,0 +1,11 @@
+<div class="btn-group me-3">
+  <button mat-button [matMenuTriggerFor]="menu">{{ work().name }}</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onSelectWork()">Open</button>
+    <button mat-menu-item (click)="onEditWork()">Modify</button>
+    <button mat-menu-item (click)="onDeleteWork()">Delete</button>
+  </mat-menu>
+
+</div>
+
+

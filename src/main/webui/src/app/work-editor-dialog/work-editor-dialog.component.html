@@ -1,0 +1,19 @@
+<mat-dialog-content>
+  This is a dialog which has data of work {{ updateWork().name }}
+  <p>Change the Status</p>
+  <mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="updateWork().status">
+      <mat-option></mat-option>
+      @for (status of data.status; track status) {
+        <mat-option [value]="status">{{ status }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  
+  <p>You selected: {{ updateWork().status }} for Work {{ updateWork().name }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="updateWork()" cdkFocusInitial>Update</button>
+  <button mat-button (click)="abort()">Cancel</button>
+</mat-dialog-actions>
