@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, computed, input} from '@angular/core';
+
+import {type work} from "../work.model";
 
 @Component({
   selector: 'app-work',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './work.component.scss'
 })
 export class WorkComponent {
-
+  work = input.required<work>();
 }

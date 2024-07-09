@@ -1,8 +1,13 @@
 <app-header />
 
 <main class="main">
-  <app-work />
-  <h2>some content</h2>
+  <ul>
+  @for (work of works; track work.id) {
+    <li>
+      <app-work [work]="work"></app-work>
+    </li>
+  }
+  </ul>
 </main>
 
 <router-outlet />
