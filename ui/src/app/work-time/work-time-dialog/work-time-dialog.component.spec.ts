@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkviewComponent } from './workview.component';
+import { WorkTimeDialogComponent } from './work-time-dialog.component';
 
-describe('WorkviewComponent', () => {
-  let component: WorkviewComponent;
-  let fixture: ComponentFixture<WorkviewComponent>;
+describe('WorkTimeDialogComponent', () => {
+  let component: WorkTimeDialogComponent;
+  let fixture: ComponentFixture<WorkTimeDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WorkviewComponent]
+      imports: [WorkTimeDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WorkviewComponent);
+    fixture = TestBed.createComponent(WorkTimeDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
