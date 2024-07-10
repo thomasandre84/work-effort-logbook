@@ -9,11 +9,18 @@
     </li>
   }
   </ul>
+    <div>
+      <form (ngSubmit)="onSubmit()">
+        <span>
+          <label for="workName">Work name</label>
+          <input type="text" id="workName" name="workName" [(ngModel)]="workName" required />
+          <button type="submit">Add Work</button>
+        </span>
+      </form>
+    </div>
   </div>
 
-  <div>
-    <button (click)="createWork()">Add Work</button>
-  </div>
+
 
 </main>
 

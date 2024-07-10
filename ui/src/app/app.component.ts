@@ -1,14 +1,15 @@
-import {Component, DestroyRef, OnInit, signal} from '@angular/core';
+import {Component, DestroyRef, OnInit, output, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {WorkService} from "./work.service";
 import {WorkComponent} from "./work/work.component";
 import {type CreateWork} from "./work.model";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, WorkComponent],
+  imports: [RouterOutlet, HeaderComponent, WorkComponent, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
 
   isFetching = signal(false);
   works = this.workService.loadedWorks;
+  workName: string = '';
 
   constructor(private workService: WorkService,
               private destroyRef: DestroyRef) {
@@ -39,10 +41,8 @@ export class AppComponent implements OnInit {
   }
 
   createWork() {
-
-    const name : string = 'Work ' + Math.random().toString(36).substring(7);
-    const updateWork: CreateWork = { name: name };
-    const subscription = this.workService.addWork(updateWork).subscribe({
+    const createWork: CreateWork = { name: this.workName };
+    const subscription = this.workService.addWork(createWork).subscribe({
       next: (work) => {
         console.log('create work: ', work);
       },
@@ -52,5 +52,9 @@ export class AppComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  onSubmit() {
+    this.createWork();
   }
 }
