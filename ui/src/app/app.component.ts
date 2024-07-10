@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, DestroyRef, OnInit, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {WorkService} from "./work.service";
 import {WorkComponent} from "./work/work.component";
-import {type work} from "./work.model";
+import {type CreateWork} from "./work.model";
 
 @Component({
   selector: 'app-root',
@@ -12,20 +12,46 @@ import {type work} from "./work.model";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private workService: WorkService) {
+  isFetching = signal(false);
+  works = this.workService.loadedWorks;
+
+  constructor(private workService: WorkService,
+              private destroyRef: DestroyRef) {
   }
 
-  get works() {
-    return this.workService.works;
+  ngOnInit() {
+    this.isFetching.set(true);
+    this.fetchWorks();
+    this.isFetching.set(false);
+  }
+
+  fetchWorks() {
+    const subscription = this.workService.fetchWorks().subscribe({
+      next: (works) =>  console.log('works', works),
+      error: (error: any) => console.log('error', error),
+      complete: () => console.log('complete')
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 
   createWork() {
 
-    const id: string = Math.random().toString(36).substring(7);
-    const name : string = 'Work ' + id;
-    const work: work = {id: id, name: name, status: 'In Progress'};
-    this.workService.addWork(work);
+    const name : string = 'Work ' + Math.random().toString(36).substring(7);
+    const updateWork: CreateWork = { name: name };
+    const subscription = this.workService.addWork(updateWork).subscribe({
+      next: (work) => {
+        console.log('create work: ', work);
+        this.fetchWorks();
+      }
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 }

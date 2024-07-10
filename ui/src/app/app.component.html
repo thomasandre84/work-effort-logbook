@@ -2,7 +2,7 @@
 
 <main class="main">
   <ul>
-  @for (work of works; track work.id) {
+  @for (work of works(); track work.id) {
     <li>
       <app-work [work]="work"></app-work>
     </li>
