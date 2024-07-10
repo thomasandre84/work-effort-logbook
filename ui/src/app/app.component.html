@@ -1,6 +1,7 @@
 <app-header />
 
 <main class="main">
+  <div>
   <ul>
   @for (work of works(); track work.id) {
     <li>
@@ -8,7 +9,12 @@
     </li>
   }
   </ul>
-  <button (click)="createWork()">Add Work</button>
+  </div>
+
+  <div>
+    <button (click)="createWork()">Add Work</button>
+  </div>
+
 </main>
 
 <router-outlet />

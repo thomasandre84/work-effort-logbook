@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
 
   fetchWorks() {
     const subscription = this.workService.fetchWorks().subscribe({
-      next: (works) =>  console.log('works', works),
       error: (error: any) => console.log('error', error),
       complete: () => console.log('complete')
     });
@@ -46,8 +45,8 @@ export class AppComponent implements OnInit {
     const subscription = this.workService.addWork(updateWork).subscribe({
       next: (work) => {
         console.log('create work: ', work);
-        this.fetchWorks();
-      }
+      },
+      complete: () => this.fetchWorks()
     });
 
     this.destroyRef.onDestroy(() => {
