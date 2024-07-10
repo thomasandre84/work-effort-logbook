@@ -152,7 +152,7 @@
     fill: var(--gray-900);
   }
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 750px) {
     .content {
       flex-direction: column;
       width: max-content;
@@ -165,3 +165,7 @@
       margin-block: 1.5rem;
     }
   }
+
+ul li {
+  display: block;
+}

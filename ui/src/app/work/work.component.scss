@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 3rem;
+  align-content: flex-start;
+}
+
+.content p {
+  margin-top: 1.5rem;
+}
+
+ul li {
+  display: inline-block;
+}
