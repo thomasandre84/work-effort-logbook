@@ -5,14 +5,18 @@
   <ul>
   @for (work of works(); track work.id) {
     <li class="content">
-      <app-work [work]="work"></app-work>
+      <app-work 
+      [work]="work"
+      (select)="onSelectWork($event)"
+      (edit)="onEditWork($event)" 
+      (delete)="onDeleteWork($event)"></app-work>
     </li>
   }
   </ul>
     <div>
       <form (ngSubmit)="onSubmit()">
         <span>
-          <label for="workName">Work name</label>
+          <label for="workName"><b>Work name: </b></label>
           <input type="text" id="workName" name="workName" [(ngModel)]="workName" required />
           <button type="submit">Add Work</button>
         </span>

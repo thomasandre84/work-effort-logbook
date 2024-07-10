@@ -1,4 +1,8 @@
 <div class="card">
-  <p>{{ work().name }}</p>
+  <span>
+    {{ work().name }}
+    <button (click)="onEditWork()">edit</button>
+    <button (click)="onDeleteWork()">delete</button>
+  </span>
 </div>
 

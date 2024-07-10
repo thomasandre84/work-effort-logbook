@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {WorkService} from "./work.service";
 import {WorkComponent} from "./work/work.component";
-import {type CreateWork} from "./work.model";
+import {type CreateWork, type Work} from "./work.model";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -52,6 +52,18 @@ export class AppComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  onDeleteWork(work: Work) {
+    console.log("Deleting " + work);
+  }
+
+  onSelectWork(work: Work) {
+    console.log("Selecting " + work);
+  }
+
+  onEditWork(work: Work) {
+    console.log("Editing " + work);
   }
 
   onSubmit() {

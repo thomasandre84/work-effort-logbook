@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 
 import {type Work} from "../work.model";
 
@@ -11,4 +11,22 @@ import {type Work} from "../work.model";
 })
 export class WorkComponent {
   work = input.required<Work>();
+  delete = output<Work>();
+  edit = output<Work>();
+  select = output<Work>();
+
+  onDeleteWork() {
+    //console.log("Delete "+ this.work);
+    this.delete.emit(this.work());
+  }
+
+  onEditWork() {
+    //console.log("Edit "+this.work);
+    this.edit.emit(this.work());
+  }
+
+  onSelectWork() {
+    //console.log("Selected: " + this.work);
+    this.edit.emit(this.work());
+  }
 }
