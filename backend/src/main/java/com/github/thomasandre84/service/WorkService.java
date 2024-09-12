@@ -14,6 +14,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -36,12 +37,16 @@ public class WorkService {
     }
 
     public WorkDto getWorkById(UUID id) {
-        Work work = workRepository.findById(id);
-        return new WorkDto(work.getId(), work.getName(), work.getStatus());
+        Optional<Work> work = workRepository.findByIdOptional(id);
+        return work.map(value -> new WorkDto(value.getId(), value.getName(), value.getStatus())).orElse(null);
     }
 
     @Transactional
     public WorkDto createWork(UpdateWorkDto updateWorkDto) {
+        Work existing = findWorkByName(updateWorkDto.name());
+        if (existing != null) {
+            throw new RuntimeException("Work with name '"+ updateWorkDto.name() +"' already exists");
+        }
         Work work = new Work();
         work.setName(updateWorkDto.name());
         if (updateWorkDto.status() != null) {
@@ -62,6 +67,10 @@ public class WorkService {
         work.setName(updateWorkDto.name());
         workRepository.persist(work);
         return new WorkDto(work.getId(), work.getName(), updateWorkDto.status());
+    }
+
+    private Work findWorkByName(String name) {
+        return workRepository.find("name", name).firstResult();
     }
 
     public List<WorkTimeDto> getWorkTimes(UUID id) {
@@ -112,4 +121,5 @@ public class WorkService {
                 .sum();
         return totalSeconds / 60L;
     }
+
 }
