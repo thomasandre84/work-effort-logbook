@@ -1,6 +1,7 @@
 package com.github.thomasandre84.service;
 
 import com.github.thomasandre84.domain.Work;
+import com.github.thomasandre84.domain.WorkStatus;
 import com.github.thomasandre84.domain.WorkTime;
 import com.github.thomasandre84.dto.UpdateWorkDto;
 import com.github.thomasandre84.dto.UpdateWorkTimeDto;
@@ -43,14 +44,12 @@ public class WorkService {
 
     @Transactional
     public WorkDto createWork(UpdateWorkDto updateWorkDto) {
-        Work existing = findWorkByName(updateWorkDto.name());
-        if (existing != null) {
-            throw new RuntimeException("Work with name '"+ updateWorkDto.name() +"' already exists");
-        }
         Work work = new Work();
         work.setName(updateWorkDto.name());
         if (updateWorkDto.status() != null) {
             work.setStatus(updateWorkDto.status());
+        } else {
+            work.setStatus(WorkStatus.IN_PROGRESS);
         }
         workRepository.persist(work);
         return new WorkDto(work.getId(), work.getName(), work.getStatus());

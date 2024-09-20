@@ -28,6 +28,6 @@ export class WorkComponent {
 
   onSelectWork() {
     //console.log("Selected: " + this.work);
-    this.edit.emit(this.work());
+    this.select.emit(this.work());
   }
 }

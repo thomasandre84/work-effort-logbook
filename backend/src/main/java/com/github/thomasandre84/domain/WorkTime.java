@@ -16,6 +16,7 @@ public class WorkTime {
     @JoinColumn(nullable = false, name = "work_id")
     private Work work;
 
+    @Column(nullable = false)
     private Instant startTime;
     private Instant endTime;
 

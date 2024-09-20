@@ -11,18 +11,11 @@ export class WorkService {
   loadedWorks = this.works.asReadonly();
 
   constructor(private httpClient: HttpClient) {
-    /*const works = localStorage.getItem('works');
-    if (works !== null) {
-      this.workList = JSON.parse(works);
-    }*/
   }
 
 
   addWork(work: CreateWork) {
     console.log('addWork', work);
-    /*this.workList.push(work);
-    console.log('workList', this.workList);
-    localStorage.setItem('works', JSON.stringify(this.workList));*/
     return this.httpClient.post('http://localhost:8080/works', work);
 
   }
@@ -34,7 +27,6 @@ export class WorkService {
           next: (works) => {
             console.log('works', works);
             this.works.set(works);
-            //localStorage.setItem('works', JSON.stringify(this.workList));
           }
         })
       );

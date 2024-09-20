@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {WorkService} from "./work.service";
 import {WorkComponent} from "./work/work.component";
+import {WorkTimeComponent}  from "./work-time/work-time.component";
 import {type CreateWork, type Work} from "./work.model";
 import {FormsModule} from "@angular/forms";
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +11,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, WorkComponent, FormsModule, NgbDropdownModule],
+  imports: [RouterOutlet, HeaderComponent, WorkComponent, FormsModule, NgbDropdownModule, WorkTimeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

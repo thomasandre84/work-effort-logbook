@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, DestroyRef, input} from '@angular/core';
 import { WorkTimeDialogComponent } from "./work-time-dialog/work-time-dialog.component";
 import {WorkTimeService} from "./work-time.service";
+import type {Work} from "../work.model";
+import {WorkTime} from "./work-time.model";
+import {WorkService} from "../work.service";
 
 @Component({
     selector: 'app-work-time',
@@ -10,12 +13,15 @@ import {WorkTimeService} from "./work-time.service";
     imports: [WorkTimeDialogComponent]
 })
 export class WorkTimeComponent {
+  work = input.required<Work>();
 
-  constructor(private workTimeService: WorkTimeService) {
+  constructor(//private workTimeService: WorkTimeService,
+      private destroyRef: DestroyRef) {
   }
 
   // TODO: getWorkTimes By WorkId only
   get workTimes() {
-    return this.workTimeService.workTimes;
+    //return this.workTimeService.workTimes;
+    return [];
   }
 }

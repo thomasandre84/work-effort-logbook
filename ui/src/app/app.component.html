@@ -24,23 +24,12 @@
   </ul>
   </div>
 
-  <ul>
-    <li>
-  <div class="col">
-    <div ngbDropdown class="d-inline-block">
-      <button type="button" class="btn btn-outline-primary" ngbDropdownToggle>
-        Toggle dropdown
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem>Action - 1</button>
-        <button ngbDropdownItem>Another Action</button>
-        <button ngbDropdownItem>Something else is here</button>
-      </div>
-    </div>
+  @if (selectedWork) {
+  <div>
+    <app-work-time
+    [work]="selectedWork"></app-work-time>
   </div>
-    </li>
-  </ul>
-
+  }
 
 
 </main>

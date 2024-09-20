@@ -12,10 +12,11 @@ public class Work {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private WorkStatus status;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "work")
