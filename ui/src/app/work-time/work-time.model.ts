@@ -4,3 +4,8 @@ export interface WorkTime {
   startTime: Date,
   endTime: Date,
 }
+
+export interface CreateWorkTime {
+  workId: string,
+  startTime: Date,
+}

@@ -6,7 +6,8 @@ import {WorkComponent} from "./work/work.component";
 import {WorkTimeComponent}  from "./work-time/work-time.component";
 import {type CreateWork, type Work} from "./work.model";
 import {FormsModule} from "@angular/forms";
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
+import { WorkTimeService } from "./work-time.service";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   selectedWork?: Work;
 
   constructor(private workService: WorkService,
+              private workTimeService: WorkTimeService,
               private destroyRef: DestroyRef) {
   }
 

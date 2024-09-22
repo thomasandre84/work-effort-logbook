@@ -15,13 +15,7 @@ import {WorkService} from "../work.service";
 export class WorkTimeComponent {
   work = input.required<Work>();
 
-  constructor(//private workTimeService: WorkTimeService,
-      private destroyRef: DestroyRef) {
-  }
 
   // TODO: getWorkTimes By WorkId only
-  get workTimes() {
-    //return this.workTimeService.workTimes;
-    return [];
-  }
+
 }
