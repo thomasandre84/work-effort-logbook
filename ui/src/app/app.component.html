@@ -26,8 +26,14 @@
 
   @if (selectedWork) {
   <div>
+    <ul>
+    @for (workTime of workTimes(); track workTime.id) {
+      <li class="works">
     <app-work-time
-    [work]="selectedWork"></app-work-time>
+    [workTime]="workTime"></app-work-time>
+    </li>
+    }
+  </ul>
   </div>
   }
 

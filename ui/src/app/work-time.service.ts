@@ -1,6 +1,6 @@
 import {Injectable, signal} from "@angular/core";
 
-import {type CreateWorkTime, type WorkTime} from "./work-time/work-time.model";
+import {type CreateWorkTime, type WorkTime} from "./work-time.model";
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
 import { Work } from "./work.model";
@@ -9,7 +9,7 @@ import { Work } from "./work.model";
 export class WorkTimeService {
   private workTimes = signal<WorkTime[]>([]);
 
-  loadedWorks = this.workTimes.asReadonly();
+  loadedWorkTimes = this.workTimes.asReadonly();
 
   constructor(private httpClient: HttpClient) {
   }

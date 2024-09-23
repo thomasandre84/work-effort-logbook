@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   works = this.workService.loadedWorks;
   workName: string = '';
   selectedWork?: Work;
+  workTimes = this.workTimeService.loadedWorkTimes;
 
   constructor(private workService: WorkService,
               private workTimeService: WorkTimeService,
