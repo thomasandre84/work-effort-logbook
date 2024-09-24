@@ -26,6 +26,7 @@
 
   @if (selectedWork) {
   <div>
+    <h2>Worktimes for {{ selectedWork.name }}</h2>
     <ul>
     @for (workTime of workTimes(); track workTime.id) {
       <li class="works">

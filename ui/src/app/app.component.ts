@@ -69,6 +69,10 @@ export class AppComponent implements OnInit {
 
   onSelectWork(work: Work) {
     console.log("Selecting " + work);
+    this.workTimeService.fetchWorkTimes(work).subscribe({
+      error: (error: any) => console.log('error', error),
+      complete: () => console.log('complete')
+    });
     this.selectedWork = work;
   }
 
