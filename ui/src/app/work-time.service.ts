@@ -8,6 +8,7 @@ import { Work } from "./work.model";
 @Injectable({providedIn: 'root'})
 export class WorkTimeService {
   private workTimes = signal<WorkTime[]>([]);
+  private backendUrl = 'http://localhost:8085/worktimes';
 
   loadedWorkTimes = this.workTimes.asReadonly();
 
@@ -17,11 +18,11 @@ export class WorkTimeService {
 
   addWorkTime(workTime: CreateWorkTime) {
     console.log('addWorkTime', workTime);
-    return this.httpClient.post('http://localhost:8080/worktimes/work', workTime);
+    return this.httpClient.post(this.backendUrl, workTime);
   }
 
   fetchWorkTimes(work: Work) {
-    return this.httpClient.get<WorkTime[]>(`http://localhost:8080/worktimes/work/${work.id}`)
+    return this.httpClient.get<WorkTime[]>(`${this.backendUrl}/work/${work.id}`)
       .pipe(
         tap({
           next: (worktimes) => {
@@ -32,7 +33,7 @@ export class WorkTimeService {
       );
   }
 
-  deleteWork(worktime: WorkTime) {
-    return this.httpClient.delete(`http://localhost:8080/worktimes/work/${worktime.id}`);
+  deleteWorkTime(worktime: WorkTime) {
+    return this.httpClient.delete(`${this.backendUrl}/work/${worktime.id}`);
   }
 }

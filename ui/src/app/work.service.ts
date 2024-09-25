@@ -7,6 +7,7 @@ import {tap} from "rxjs";
 @Injectable({providedIn: 'root'})
 export class WorkService {
   private works = signal<Work[]>([]);
+  private backendUrl = 'http://localhost:8085/works';
 
   loadedWorks = this.works.asReadonly();
 
@@ -16,12 +17,12 @@ export class WorkService {
 
   addWork(work: CreateWork) {
     console.log('addWork', work);
-    return this.httpClient.post('http://localhost:8080/works', work);
+    return this.httpClient.post(this.backendUrl, work);
 
   }
 
   fetchWorks() {
-    return this.httpClient.get<Work[]>('http://localhost:8080/works')
+    return this.httpClient.get<Work[]>(this.backendUrl)
       .pipe(
         tap({
           next: (works) => {
@@ -33,6 +34,6 @@ export class WorkService {
   }
 
   deleteWork(work: Work) {
-    return this.httpClient.delete(`http://localhost:8080/works/${work.id}`);
+    return this.httpClient.delete(`${this.backendUrl}/${work.id}`);
   }
 }
