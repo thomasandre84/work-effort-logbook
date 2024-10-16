@@ -27,6 +27,13 @@
   @if (selectedWork) {
   <div>
     <h2>Worktimes for {{ selectedWork.name }}</h2>
+    <form (ngSubmit)="onSubmit()">
+        <span>
+          <label for="startTime"><b>StartTime: </b></label>
+          <input type="text" id="startTime" name="startTime" [(ngModel)]="startTime" required />
+          <button type="submit">Add WorkTime</button>
+        </span>
+    </form>
     <ul>
     @for (workTime of workTimes(); track workTime.id) {
       <li class="works">

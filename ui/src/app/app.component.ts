@@ -1,4 +1,4 @@
-import {Component, DestroyRef, OnInit, output, signal} from '@angular/core';
+import {Component, DestroyRef, OnInit, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {WorkService} from "./work.service";
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   workName: string = '';
   selectedWork?: Work;
   workTimes = this.workTimeService.loadedWorkTimes;
+  startTime: Date = new Date();
 
   constructor(private workService: WorkService,
               private workTimeService: WorkTimeService,
