@@ -1,4 +1,4 @@
-import {Component, DestroyRef, input} from '@angular/core';
+import {Component, input} from '@angular/core';
 import { WorkTimeDialogComponent } from "./work-time-dialog/work-time-dialog.component";
 import {WorkTime} from "../work-time.model";
 
@@ -12,7 +12,12 @@ import {WorkTime} from "../work-time.model";
 export class WorkTimeComponent {
   workTime = input.required<WorkTime>();
 
+  getStartTime() {
+    return new Date(this.workTime().startTime).toLocaleString();
+  }
 
-  // TODO: getWorkTimes By WorkId only
+  getEndTime() {
+    return new Date(this.workTime().endTime).toLocaleString();
+  }
 
 }
