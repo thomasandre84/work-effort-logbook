@@ -1,6 +1,7 @@
 package com.github.thomasandre84.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -41,6 +42,14 @@ public class WorkTime {
         if (startTime == null) {
             startTime = Instant.now();
         }
+    }
+
+    @AssertTrue(message = "Start time must be before end time")
+    public boolean isStartTimeBeforeEndTime() {
+        if (endTime == null) {
+            return true;
+        }
+        return endTime.toEpochMilli() >= startTime.toEpochMilli();
     }
 
     public void setStartTime(Instant startTime) {
